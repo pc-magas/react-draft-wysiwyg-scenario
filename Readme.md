@@ -7,3 +7,13 @@ The app runs with the command:
 ```
 npm start
 ```
+
+## About this branch:
+This branch contains the bare minimum code in order torender the editor in a react component. Also the branches that are in the repository are:
+
+* `master`: Has all the desired functionality according to the wanted scenarios
+* `editor_only`: Has the bare minimum code in order to render the editor.
+* `upload_file`: Contains the internal and external form to upload and insert an image into thje editor.
+* `video_embed`: Contains all the desired functionality to embed the video into the editor.
+* `text_manipulation`: Manipulates the text
+* `data_export`: Export the editor's content into an xml format.
