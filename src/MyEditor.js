@@ -16,25 +16,30 @@ class MyEditor extends Component {
       });
     };
     
-    uploadCallback(file) {
-      var reader = new window.FileReader();
-      reader.onloadend= () => { 
-        fetch('http://localhost:9090/image',{
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: file.name,
-            data: reader.result,
-          }),
-        })
-        .then((data)=>{
-            console.log('Uploaded Data',data);
-        });
-      }
-      reader.readAsDataURL(file);
+    uploadCallback(file,callback) {
+      return new Promise( (resolve, reject) => {
+        var reader = new window.FileReader();
+        reader.onloadend= () => { 
+          fetch('http://localhost:9090/image',{
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: file.name,
+              data: reader.result,
+            }),
+          })
+          .then((resp) => resp.json()) 
+          .then((data)=>{
+              console.log('Uploaded Data',data);
+              const imageUrl='http://localhost:9090/image/'+data.name;
+              resolve({data:{ link: imageUrl } });
+          });
+        }
+        reader.readAsDataURL(file);
+      });
     }
 
     render() {
