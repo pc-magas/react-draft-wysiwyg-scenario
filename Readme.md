@@ -9,7 +9,7 @@ npm start
 ```
 
 ## About this branch:
-This branch contains the bare minimum code in order torender the editor in a react component. Also the branches that are in the repository are:
+This branch contains the full app with all the feature. Also the branches that are in the repository are:
 
 * `master`: Has all the desired functionality according to the wanted scenarios
 * `editor_only`: Has the bare minimum code in order to render the editor.
