@@ -37,6 +37,11 @@
   display: none;
 }
 
+.Sidebar .LastUpload .img {
+  max-width:500px;
+  max-height: 120px;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
