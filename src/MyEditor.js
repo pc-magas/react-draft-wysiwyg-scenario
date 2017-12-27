@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { EditorState } from 'draft-js';
+import { EditorState,AtomicBlockUtils } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -42,6 +42,23 @@ class MyEditor extends Component {
       });
     }
 
+    insertImage(url) {
+      console.log(this);
+      const contentState = this.state.editorState.getCurrentContent();
+      const contentStateWithEntity = contentState.createEntity(
+        'image',
+        'IMMUTABLE',
+        { src: url },
+      );
+      const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+      const newEditorState = EditorState.set(
+        contentState,
+        { currentContent: contentStateWithEntity },
+      );
+      const state=AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, ' ');
+      this.setState({editorState:state});
+    };
+    
     render() {
       const { editorState } = this.state;
       const config={

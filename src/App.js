@@ -11,6 +11,7 @@ class App extends Component {
 
   uploadCallback(link){
     this.setState({'uploadedImage':link});
+    this.__editor.insertImage(link).bind(this.__editor);
   }
 
   render() {
@@ -21,7 +22,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <div className="App-editor">
-          <Editor />
+          <Editor ref={ (editor) => {this.__editor=editor; } } />
         </div>
         <div className="SideBar">
           <div className="LastUpload">
