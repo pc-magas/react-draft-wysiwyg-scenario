@@ -54,7 +54,7 @@ class MyEditor extends Component {
               editorClassName="demo-editor"
               onEditorStateChange={this.onEditorStateChange}
               toolbar={ config }
-           />
+          />
       );
     }
 }
