@@ -40,9 +40,8 @@ class UploadForm extends Component {
 
     render(){
        return (
-       <div className="sideBarUpload">
+       <div>
             <h3>Upload an image and set it into the editor</h3>
-            <img src={ this.state.lastImgUploaded } />
             <input type="file" onChange={ this.onChange.bind(this) } name="file"/>
         </div>);
     }

@@ -23,12 +23,14 @@ class App extends Component {
         <div className="App-editor">
           <Editor />
         </div>
-        <div className="Sidebar">
+        <div className="SideBar">
           <div className="LastUpload">
             <h3>Last Uploaded Image</h3>
             <img src={this.state.uploadedImage} />
           </div>
-          <UploadForm uploadCallback={ this.uploadCallback.bind(this) }/>
+          <div className="sideBarUpload">
+            <UploadForm  uploadCallback={ this.uploadCallback.bind(this) }/>
+          </div>
         </div>
       </div>
     );
