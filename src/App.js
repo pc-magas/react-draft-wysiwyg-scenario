@@ -27,7 +27,7 @@ class App extends Component {
         <div className="SideBar">
           <div className="LastUpload">
             <h3>Last Uploaded Image</h3>
-            <img src={this.state.uploadedImage} />
+            <img src={this.state.uploadedImage} alt="Uploaded Image" />
           </div>
           <div className="sideBarUpload">
             <UploadForm  uploadCallback={ this.uploadCallback.bind(this) }/>

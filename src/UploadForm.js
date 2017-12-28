@@ -39,10 +39,9 @@ class UploadForm extends Component {
     }
 
     render(){
-       return (
-       <div>
-            <h3>Upload an image and set it into the editor</h3>
-            <input type="file" onChange={ this.onChange.bind(this) } name="file"/>
+       return (<div>
+          <h3>Upload an image and set it into the editor</h3>
+          <input type="file" onChange={ this.onChange.bind(this) } name="file"/>
         </div>);
     }
 }
