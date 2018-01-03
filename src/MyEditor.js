@@ -11,7 +11,6 @@ class MyEditor extends Component {
     }
     
     onEditorStateChange: Function = (editorState) => {
-      console.log("State",editorState);
       this.setState({
         editorState,
       });
@@ -56,14 +55,13 @@ class MyEditor extends Component {
       console.log("Inserting Image",this.__editor);
       const editorState = this.state.editorState;
       const entityData = { src:url, height: 300, width: 300, };
-      const entityKey = editorState
-      .getCurrentContent()
-      .createEntity('IMAGE', 'MUTABLE', entityData)
-      .getLastCreatedEntityKey();
+      const contentStateWithEntity=editorState.getCurrentContent().createEntity('IMAGE', 'IMMUTABLE', entityData);
 
-      const newEditorState = AtomicBlockUtils.insertAtomicBlock(editorState,entityKey,' ',);
+      const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 
-      this.onEditorStateChange(newEditorState);
+      let newEditorState = EditorState.set(editorState, { currentContent: contentStateWithEntity },);
+      newEditorState = AtomicBlockUtils.insertAtomicBlock(editorState,entityKey,' ',);
+      this.setState({editorState:newEditorState});
     };
     
     render() {
