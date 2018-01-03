@@ -28,10 +28,10 @@ class UploadForm extends Component {
           })
           .then((resp) => resp.json()) 
           .then((data) => {
-              console.log('Uploaded Data',data);
-              const imageUrl='http://localhost:9090/image/'+data.name;
-              if(this.props.uploadCallback){ this.props.uploadCallback(imageUrl); }
-              this.setState({'lastImgUploaded':imageUrl})
+            console.log('Uploaded Data',data);
+            const imageUrl='http://localhost:9090/image/'+data.name;
+            if(this.props.uploadCallback){ this.props.uploadCallback(imageUrl); }
+            this.setState({'lastImgUploaded':imageUrl})
           });
         }
         

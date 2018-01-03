@@ -11,7 +11,7 @@ class App extends Component {
 
   uploadCallback(link){
     this.setState({'uploadedImage':link});
-    this.__editor.insertImage(link).bind(this.__editor);
+    this.__editor.insertImage(link);
   }
 
   render() {
@@ -27,7 +27,7 @@ class App extends Component {
         <div className="SideBar">
           <div className="LastUpload">
             <h3>Last Uploaded Image</h3>
-            <img src={this.state.uploadedImage} alt="Uploaded Image" />
+            <img src={this.state.uploadedImage} alt="Uploaded Stuff" />
           </div>
           <div className="sideBarUpload">
             <UploadForm  uploadCallback={ this.uploadCallback.bind(this) }/>
