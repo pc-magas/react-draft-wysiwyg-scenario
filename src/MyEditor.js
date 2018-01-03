@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { EditorState,ContentBlock,genKey } from 'draft-js';
+import { EditorState,ContentBlock,genKey,AtomicBlockUtils } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -53,18 +53,17 @@ class MyEditor extends Component {
      * @param {String} url The image's url to insert into the editor. 
      */
     insertImage: Function = (url) => {
-      console.log("Inserting Image");
+      console.log("Inserting Image",this.__editor);
       const editorState = this.state.editorState;
-      const block = new ContentBlock({
-        key: genKey(),
-        type: 'unstyled',
-        text: url,
-      });
+      const entityData = { src:url, height: 300, width: 300, };
+      const entityKey = editorState
+      .getCurrentContent()
+      .createEntity('IMAGE', 'MUTABLE', entityData)
+      .getLastCreatedEntityKey();
 
-      const contentState = editorState.getCurrentContent();
-      const blockMap = contentState.getBlockMap().set(block.key, block);                   
-      const newState = EditorState.push(editorState, contentState.set('blockMap', blockMap));
-      this.onEditorStateChange(newState);
+      const newEditorState = AtomicBlockUtils.insertAtomicBlock(editorState,entityKey,' ',);
+
+      this.onEditorStateChange(newEditorState);
     };
     
     render() {
@@ -74,6 +73,7 @@ class MyEditor extends Component {
       };
       return (
           <Editor
+              ref= { (editor) => { this.__editor=editor } }
               editorState={editorState}
               wrapperClassName="demo-wrapper"
               editorClassName="demo-editor"
