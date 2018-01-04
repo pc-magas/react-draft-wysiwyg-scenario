@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
-import { EditorState} from 'draft-js';
+import { EditorState, CompositeDecorator } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
-
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+
+import Link from 'LinkDecorator';
 
 
 class MyEditor extends Component {
-    state = {
-        editorState: EditorState.createEmpty(),
+
+    constructor(props){
+      super(props);
+      const compositeDecorator = new CompositeDecorator([LinkDecorator]);
+      this.state = {
+        editorState: EditorState.createEmpty(compositeDecorator),
+      };
     }
+    
     
     onEditorStateChange: Function = (editorState) => {
       this.setState({
