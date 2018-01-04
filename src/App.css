@@ -19,8 +19,21 @@
 }
 
 .App-editor {
-  width: 100%;
+  width: 80%;
   height: 100%;
+  float: left;
+  border: 1px;
+}
+
+.SideBar {
+  width: 20%;
+  height: 100%;
+  float: right;
+}
+
+.LastUpload img {
+  max-width: 300px;
+  max-height: 120px;
 }
 
 @keyframes App-logo-spin {
