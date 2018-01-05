@@ -12,10 +12,13 @@ export default {
      */
     'regexMatch': (regex, contentBlock, callback)=>{
         const text = contentBlock.getText();
-        let matchArr, start;
-        while ((matchArr = regex.exec(text)) !== null) {
+        let matchArr = regex.exec(text);
+        let start;
+        console.log("Block Content", text);
+        while (matchArr !== null) {
           start = matchArr.index;
           callback(start, start + matchArr[0].length);
+          matchArr = regex.exec(text);
         }
     },
 }

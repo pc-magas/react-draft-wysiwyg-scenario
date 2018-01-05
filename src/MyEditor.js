@@ -3,24 +3,22 @@ import { EditorState, CompositeDecorator } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-import Link from 'LinkDecorator';
+import Link from './LinkDecorator';
 
 
 class MyEditor extends Component {
 
     constructor(props){
       super(props);
-      const compositeDecorator = new CompositeDecorator([LinkDecorator]);
+      const compositeDecorator = new CompositeDecorator([Link]);
       this.state = {
+        compositeDecorator,
         editorState: EditorState.createEmpty(compositeDecorator),
       };
     }
     
-    
     onEditorStateChange: Function = (editorState) => {
-      this.setState({
-        editorState,
-      });
+      this.setState({editorState,});
     };
     
     render() {
